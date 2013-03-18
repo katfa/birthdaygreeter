@@ -1,0 +1,90 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity" >
+    
+    <TextView 
+        android:id="@+id/addContactTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:textSize="30sp"
+        android:layout_marginBottom="20sp"
+        android:textAlignment="center"
+        android:text="@string/add_contact"/>
+
+    <EditText
+        android:id="@+id/firstNameBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/addContactTitle"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:hint="@string/first_name"
+        android:inputType="text" />
+    
+    <EditText
+        android:id="@+id/lastNameBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/firstNameBox"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:hint="@string/last_name"
+        android:inputType="text" />
+    
+    <EditText
+        android:id="@+id/phoneNumberBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/lastNameBox"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:hint="@string/phone_number"
+        android:inputType="phone" />
+    
+    <Button
+        android:id="@+id/calendarButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phoneNumberBox"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:text="@string/birthday"
+        android:textSize="20sp" />
+    
+    <TextView
+        android:id="@+id/birthdayText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/calendarButton"
+        android:layout_below="@+id/phoneNumberBox"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="5dp"
+		android:textSize="22sp"
+		android:textColor="@color/dark_grey"
+		android:textStyle="italic" />      
+		
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/calendarButton"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:text="@string/save" />
+
+    
+         
+
+</RelativeLayout>

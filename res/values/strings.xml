@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Birthday Greeter</string>
+    <string name="image_description">App icon!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="add_contact">Add contact</string>
+    <string name="view_contacts">View contacts</string>
+    <string name="about_app">About this app</string>
+    <string name="add_contact_phonebook">Add contact from phonebook</string>
+    <string name="first_name">Enter firstname</string>
+    <string name="last_name">Enter lastname (optional)</string>
+    <string name="phone_number">Enter mobilephone number</string>
+    <string name="birthday">Enter birthday</string>
+    <string name="save">Save</string>
+    <string name="title_activity_register">Add a contact</string>
+    <string name="title_activity_calendar">Choose birthday</string>
+    <string name="title_activity_contacts_list">All Contacts</string>
+    <string name="editIcon_description">Edit icon</string>
+    <string name="deleteIcon_description">Delete icon</string>
+
+</resources>
