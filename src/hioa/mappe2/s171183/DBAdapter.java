@@ -54,16 +54,20 @@ public class DBAdapter {
 		return dbHelper.getContact(id);
 	}
 	
+	public void deleteContact(Contact c){
+		dbHelper.deleteContact(c.getId());
+	}
+	
 	private static class DBHelper extends SQLiteOpenHelper{
 		private SQLiteDatabase db;
 
-		public DBHelper(Context context, String databaseName, CursorFactory factory,
+		private DBHelper(Context context, String databaseName, CursorFactory factory,
 				int databaseVersion) {
 			super(context, databaseName, factory, databaseVersion);
 		
 		}
 		
-		public DBHelper(Context context){
+		private DBHelper(Context context){
 			super(context, DB_CONTACT,null, DB_VERSION);
 		}
 		
@@ -84,7 +88,7 @@ public class DBAdapter {
 		}
 
 		
-		public void addContact(Contact contact){
+		private void addContact(Contact contact){
 		    db = this.getWritableDatabase();
 		    ContentValues values = new ContentValues(3);
 
@@ -94,10 +98,9 @@ public class DBAdapter {
 		    values.put(BIRTHDAY, contact.getBirthday());
 
 		    db.insert(TABLE, null, values);
-		    db.close();
 		  }
 		
-		public ArrayList<Contact> getAllContacts(){
+		private ArrayList<Contact> getAllContacts(){
 			ArrayList<Contact> allContacts = new ArrayList<Contact>();
 			String selectQuery = "select * from " + TABLE;
 			
@@ -117,10 +120,10 @@ public class DBAdapter {
 					cursor.moveToNext();
 				}
 			}
-			db.close();
+			cursor.close();
 			return allContacts;
 		}
-		public Contact getContact(int id){
+		private Contact getContact(int id){
 			db = this.getReadableDatabase();
 			Cursor cursor = db.query(TABLE, new String[] { ID, FIRST_NAME, LAST_NAME, PHONENUMBER, BIRTHDAY }, 
 									ID + "=?", 
@@ -138,13 +141,17 @@ public class DBAdapter {
 			return new Contact(id, firstname, lastname, phonenumber, birthday);
 		}
 		
-		public int getCount(){
+		private int getCount(){
 			String countQuery = "select * from " + TABLE + ";";
 			db = this.getReadableDatabase();
 			
 			Cursor cursor = db.rawQuery(countQuery, null);
-			db.close();
 			return cursor.getCount();
+		}
+		
+		private void deleteContact(int id){
+			db = this.getWritableDatabase();
+			db.delete(TABLE, ID + " =?", new String[] {String.valueOf(id)});
 		}
 
 	}

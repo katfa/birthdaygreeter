@@ -61,6 +61,9 @@ public final class R {
         public static final int app_name=0x7f050000;
         public static final int birthday=0x7f05000a;
         public static final int deleteIcon_description=0x7f050010;
+        public static final int delete_confirm_title=0x7f050011;
+        public static final int delete_no=0x7f050013;
+        public static final int delete_yes=0x7f050012;
         public static final int editIcon_description=0x7f05000f;
         public static final int first_name=0x7f050007;
         public static final int image_description=0x7f050001;

@@ -18,5 +18,8 @@
     <string name="title_activity_contacts_list">All Contacts</string>
     <string name="editIcon_description">Edit icon</string>
     <string name="deleteIcon_description">Delete icon</string>
+    <string name="delete_confirm_title">Delete this contact?</string>
+    <string name="delete_yes">Yes</string>
+    <string name="delete_no">Nope</string>
 
 </resources>

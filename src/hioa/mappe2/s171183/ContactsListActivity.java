@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -14,9 +17,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class ContactsListActivity extends Activity {
+public class ContactsListActivity extends FragmentActivity {
 
 	private DBAdapter dbAdapter;
 	private ArrayAdapter<Contact> listAdapter;
@@ -35,7 +37,7 @@ public class ContactsListActivity extends Activity {
 		}
 		
 		ListView listView = (ListView)findViewById(R.id.contactsList);
-		listAdapter = new ContactListAdapter(this, R.layout.row_layout, R.id.contactName, contacts);
+		listAdapter = new ContactListAdapter(this.getBaseContext(), this, getSupportFragmentManager(), R.layout.row_layout, R.id.contactName, contacts);
 		listView.setAdapter(listAdapter);
 		
 	}
@@ -46,17 +48,27 @@ public class ContactsListActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_contacts_list, menu);
 		return true;
 	}
+	
+	public void deleteContact(Contact c){
+		dbAdapter.deleteContact(c);
+		finish();
+		startActivity(getIntent());
+	}
 
 	private class ContactListAdapter extends ArrayAdapter<Contact> {
 		
 		private Context context;
 		private ArrayList<String> names;
 		private ArrayList<Contact> contacts;
+		private ContactsListActivity cLActivity;
+		private FragmentManager fManager;
 		
-		public ContactListAdapter(Context context, int textViewResourceId, int textViewId, ArrayList<Contact> values){
+		public ContactListAdapter(Context context, ContactsListActivity cLActivity, FragmentManager fManager, int textViewResourceId, int textViewId, ArrayList<Contact> values){
 			super(context, textViewResourceId, textViewId, values);
 			this.context = context;
 			this.contacts = values;
+			this.cLActivity = cLActivity;
+			this.fManager = fManager;
 		}
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
@@ -71,6 +83,7 @@ public class ContactsListActivity extends Activity {
 			deleteButton.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View view) {
+					System.out.println("CLICK");
 					int contactId = Integer.parseInt(view.getTag().toString());
 					showDeleteConfirmation(contactId);
 				}
@@ -82,6 +95,8 @@ public class ContactsListActivity extends Activity {
 		
 		private void showDeleteConfirmation(int contactId){
 			Contact c = dbAdapter.getContact(contactId);
+			DialogFragment deleteDialog = new DeleteDialog(c, cLActivity);
+			deleteDialog.show(fManager, "Delete");
 		}
 	}
 }
