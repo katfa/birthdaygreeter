@@ -1,6 +1,7 @@
 package hioa.mappe2.s171183;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,6 +13,7 @@ public class MainActivity extends Activity {
 	
 	private Button addContact;
 	private Button viewContacts;
+	private Button showNotification;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,17 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				Intent intent = new Intent(MainActivity.this, ContactsListActivity.class);
 				startActivity(intent);
+			}
+		});
+		
+	
+		showNotification = (Button)findViewById(R.id.showNotification);
+		showNotification.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				NotificationCreator nc = new NotificationCreator(MainActivity.this);
+				nc.createNotification();
 			}
 		});
 		

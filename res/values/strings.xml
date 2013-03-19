@@ -21,5 +21,8 @@
     <string name="delete_confirm_title">Delete this contact?</string>
     <string name="delete_yes">Yes</string>
     <string name="delete_no">Nope</string>
+    <string name="show_notification">Show notification</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_notification_reciever">NotificationRecieverActivity</string>
 
 </resources>

@@ -56,6 +56,15 @@
             android:background="@color/white"
             android:layout_marginBottom="5dp"
             android:textColor="@color/green" />
+        
+        <Button
+            android:id="@+id/showNotification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/show_notification"
+            android:background="@color/white"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/green" />
     </LinearLayout>
 
 </RelativeLayout>

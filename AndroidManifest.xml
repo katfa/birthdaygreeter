@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="16"
         android:targetSdkVersion="17" />
 
     <application
@@ -33,6 +33,14 @@
         <activity
             android:name="hioa.mappe2.s171183.ContactsListActivity"
             android:label="@string/title_activity_contacts_list" >
+        </activity>
+        <activity
+            android:name="hioa.mappe2.s171183.NotificationRecieverActivity"
+            android:label="@string/title_activity_notification_reciever" >
+        </activity>
+        <activity
+            android:name="hioa.mappe2.s171183.NotificationCreatorActivity"
+            android:label="@string/title_activity_notification_reciever" >
         </activity>
     </application>
 
