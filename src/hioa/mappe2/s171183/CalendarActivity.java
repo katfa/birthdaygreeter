@@ -31,6 +31,8 @@ public class CalendarActivity extends Activity {
 					pickedMonth = month;
 					pickedDay = dayOfMonth;
 					
+					System.out.println("Date changed");
+					
 					String selectedDate = months[pickedMonth] + " " + pickedDay;
 					
 					Bundle bundle = new Bundle();

@@ -2,7 +2,6 @@ package hioa.mappe2.s171183;
 
 import java.util.ArrayList;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;

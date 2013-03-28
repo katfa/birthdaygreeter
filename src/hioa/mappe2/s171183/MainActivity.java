@@ -1,7 +1,6 @@
 package hioa.mappe2.s171183;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -52,7 +51,7 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				NotificationCreator nc = new NotificationCreator(MainActivity.this);
+				NotificationCreator nc = new NotificationCreator(MainActivity.this, "Kat", "90134595");
 				nc.createNotification();
 			}
 		});
