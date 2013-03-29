@@ -35,6 +35,12 @@ public class RegisterActivity extends Activity {
 		
 		bindInputFields();
 		bindButtons();
+		
+		Intent i = getIntent();
+		if (i.hasExtra("name") && i.hasExtra("number")) {
+			firstNameInput.setText(i.getStringExtra("name"));
+			phoneNumberInput.setText(i.getStringExtra("number"));
+		}
 	}
 	
 	private void bindButtons(){

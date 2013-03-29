@@ -23,18 +23,18 @@
 	     <ImageView
 	        android:id="@+id/editIcon"
 	        android:layout_width="0dp"
-	        android:layout_height="30dp"
+	        android:layout_height="25dp"
 	        android:layout_weight="0.5"
-			android:layout_marginTop="6dp"
+			android:layout_marginTop="10dp"
 	        android:src="@drawable/edit_icon"
 	        android:contentDescription="@string/editIcon_description" />
 	    
 	    <ImageView
 	        android:id="@+id/deleteIcon"
 	        android:layout_width="0dp"
-	        android:layout_height="25dp"
+	        android:layout_height="30dp"
 	        android:layout_weight="0.5"
-	        android:layout_marginTop="10dp"
+	        android:layout_marginTop="7dp"
 	        android:src="@drawable/delete_icon"
 	        android:contentDescription="@string/deleteIcon_description" />
    

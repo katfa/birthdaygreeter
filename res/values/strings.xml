@@ -24,5 +24,7 @@
     <string name="show_notification">Show notification</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_notification_reciever">NotificationRecieverActivity</string>
+    <string name="title_activity_phone_book">Phone Book</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

@@ -7,10 +7,11 @@
     <uses-sdk
         android:minSdkVersion="16"
         android:targetSdkVersion="17" />
-    
+
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.WRITE_SMS" />
-    
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -44,6 +45,10 @@
         <activity
             android:name="hioa.mappe2.s171183.NotificationCreatorActivity"
             android:label="@string/title_activity_notification_reciever" >
+        </activity>
+        <activity
+            android:name="hioa.mappe2.s171183.PhoneBook"
+            android:label="@string/title_activity_phone_book" >
         </activity>
     </application>
 
