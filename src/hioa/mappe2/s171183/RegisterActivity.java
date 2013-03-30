@@ -23,6 +23,7 @@ public class RegisterActivity extends Activity {
 	private EditText phoneNumberInput;
 	
 	private DBAdapter dbAdapter;
+	private int contactId = 0;
 	
 	private static final int CALENDAR_VIEW = 1;
 	@Override
@@ -37,9 +38,24 @@ public class RegisterActivity extends Activity {
 		bindButtons();
 		
 		Intent i = getIntent();
+		
+		// If intent comes from phonebook
 		if (i.hasExtra("name") && i.hasExtra("number")) {
 			firstNameInput.setText(i.getStringExtra("name"));
 			phoneNumberInput.setText(i.getStringExtra("number"));
+		}
+		// If intent comes from ContactListActivity (edit contact)
+		else if (i.hasExtra("id")) {
+			firstNameInput.setText(i.getStringExtra("firstname"));
+			if(i.getStringExtra("lastname").equals("---")) {
+				lastNameInput.setText("");
+			} else {
+				lastNameInput.setText(i.getStringExtra("lastname"));
+			}
+			
+			phoneNumberInput.setText(i.getStringExtra("phonenumber"));
+			birthdayText.setText(i.getStringExtra("birthday"));
+			contactId = i.getIntExtra("id", 0);
 		}
 	}
 	
@@ -61,28 +77,45 @@ public class RegisterActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Contact contact;
+				if(noEmptyFields()){
+					
+					//adds custom string if lastname is left blank
+					String lastNameSubstitute = "";
+					if(lastNameInput.getText().toString().length() == 0){
+						lastNameSubstitute = "---";
+					}
+					
+					if(lastNameSubstitute.equals("")){
+						contact = new Contact(firstNameInput.getText().toString(), lastNameInput.getText().toString(),
+												  phoneNumberInput.getText().toString(), birthdayText.getText().toString()); 
+					} else {
+						contact = new Contact(firstNameInput.getText().toString(), lastNameSubstitute,
+												  phoneNumberInput.getText().toString(), birthdayText.getText().toString()); 
+					}
 				
-				//adds custom string if lastname is left blank
-				String lastNameSubstitute = "";
-				if(lastNameInput.getText().toString() == ""){
-					lastNameSubstitute = "---";
-				}
-				
-				if(lastNameSubstitute == ""){
-					contact = new Contact(firstNameInput.getText().toString(), lastNameInput.getText().toString(),
-											  phoneNumberInput.getText().toString(), birthdayText.getText().toString()); 
-				} else {
-					contact = new Contact(firstNameInput.getText().toString(), lastNameSubstitute,
-											  phoneNumberInput.getText().toString(), birthdayText.getText().toString()); 
-				}
-				
-				if(contactIsValid(contact)) {
-					dbAdapter.insert(contact);
+					//on update
+					if(contactId != 0){
+						contact = dbAdapter.getContact(contactId);
+						contact.setBirthday(birthdayText.getText().toString());
+						contact.setFirstName(firstNameInput.getText().toString());
+						contact.setPhoneNumber(phoneNumberInput.getText().toString());
+						if(lastNameSubstitute.equals("")){
+							contact.setLastName(lastNameInput.getText().toString());
+						} else {
+							contact.setLastName(lastNameSubstitute);
+						}
+
+						dbAdapter.updateContact(contact);
+						Toast.makeText(context, "Contact updated", Toast.LENGTH_SHORT).show();
+					} else {
+						//on save new contact
+						dbAdapter.insert(contact);
+						Toast.makeText(context, "Total contacts increased to " + dbAdapter.getTotalContacts(), Toast.LENGTH_SHORT).show();
+					}
 				} else {
 					showErrorDialog();
-				}	
-				
-				Toast.makeText(context, "Total contacts increased to " + dbAdapter.getTotalContacts(), Toast.LENGTH_SHORT).show();
+					Toast.makeText(context, "EMPTY FIELDS!", Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 	}
@@ -91,6 +124,7 @@ public class RegisterActivity extends Activity {
 		firstNameInput = (EditText)findViewById(R.id.firstNameBox);
 		lastNameInput = (EditText)findViewById(R.id.lastNameBox);
 		phoneNumberInput = (EditText)findViewById(R.id.phoneNumberBox);
+		birthdayText = (TextView)findViewById(R.id.birthdayText);
 	}
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -99,19 +133,21 @@ public class RegisterActivity extends Activity {
 		case CALENDAR_VIEW:
 			if(resultCode == RESULT_OK) {
 				Bundle bundle = data.getExtras();
-				birthdayText = (TextView)findViewById(R.id.birthdayText);
 				birthdayText.setText(bundle.getString("selectedDate"));
 				break;
 				
 			}
 		}
 	}
-
-	private boolean contactIsValid(Contact contact) {
-		return contact.getFirstName() != "" || contact.getPhoneNumber() != "" || contact.getBirthday() != "";
+	
+	private boolean noEmptyFields(){
+		return firstNameInput.getText().toString().length() != 0 && 
+				phoneNumberInput.getText().toString().length() != 0 &&
+				birthdayText.getText().toString().length() != 0;
 	}
 	
 	private void showErrorDialog(){}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

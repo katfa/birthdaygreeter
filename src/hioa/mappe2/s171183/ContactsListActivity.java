@@ -3,6 +3,7 @@ package hioa.mappe2.s171183;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
@@ -57,7 +58,6 @@ public class ContactsListActivity extends FragmentActivity {
 	private class ContactListAdapter extends ArrayAdapter<Contact> {
 		
 		private Context context;
-		private ArrayList<String> names;
 		private ArrayList<Contact> contacts;
 		private ContactsListActivity cLActivity;
 		private FragmentManager fManager;
@@ -75,19 +75,38 @@ public class ContactsListActivity extends FragmentActivity {
 			View row = inflater.inflate(R.layout.row_layout, parent, false);
 			TextView contactName = (TextView)row.findViewById(R.id.contactName);
 			ImageView deleteButton = (ImageView)row.findViewById(R.id.deleteIcon);
-			
+			ImageView editButton = (ImageView)row.findViewById(R.id.editIcon);
+
 			contactName.setText(contacts.get(position).toString());
 			deleteButton.setTag(contacts.get(position).getId());
-
+			editButton.setTag(contacts.get(position).getId());
+		
 			deleteButton.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View view) {
-					System.out.println("CLICK");
 					int contactId = Integer.parseInt(view.getTag().toString());
 					showDeleteConfirmation(contactId);
 				}
 			});
 			
+			
+			editButton.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View view) {
+					int contactId = Integer.parseInt(view.getTag().toString());
+					Contact contact = dbAdapter.getContact(contactId);
+					
+					Intent intent = new Intent(ContactsListActivity.this, RegisterActivity.class);
+					intent.putExtra("id", contact.getId());
+					intent.putExtra("firstname", contact.getFirstName());
+					intent.putExtra("lastname", contact.getLastName());
+					intent.putExtra("phonenumber", contact.getPhoneNumber());
+					intent.putExtra("birthday", contact.getBirthday());
+					
+					startActivity(intent);
+				}
+			});
 			
 			return row;
 		}

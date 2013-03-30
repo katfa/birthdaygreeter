@@ -1,6 +1,6 @@
 package hioa.mappe2.s171183;
 
-public class Contact {
+public class Contact{
 	private int id;
 	private String firstName;
 	private String lastName;
@@ -65,11 +65,11 @@ public class Contact {
 	}
 	
 	public String toString(){
-		if(lastName != "---") {
-			return lastName + ", " + firstName;
-		} else {
+		System.out.println("Lastname" + lastName+ "'");
+		if(lastName.equals("---"))
 			return firstName;
-		}
+		else return lastName + ", " + firstName;
+		
 	}
 
 }
