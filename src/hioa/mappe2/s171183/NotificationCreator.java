@@ -17,7 +17,6 @@ public class NotificationCreator extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
 	}
 
 	public NotificationCreator(Context context, String firstname, String phonenumber, int index){

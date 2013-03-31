@@ -14,6 +14,7 @@ import android.os.IBinder;
 public class BirthdayChecker extends Service {
 
 	public static final long CHECK_INTERVAL = 24 * 60 * 60 * 1000; // 24 hours
+//	public static final long CHECK_INTERVAL = 10 * 1000; //10 seconds
 	private Handler mHandler = new Handler();
 	private Timer mTimer = null;
 	private DBAdapter dbAdapter = new DBAdapter(this);
