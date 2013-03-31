@@ -121,6 +121,30 @@ public class DBAdapter extends SQLiteOpenHelper {
 		return new Contact(id, firstname, lastname, phonenumber, birthday);
 	}
 	
+	public ArrayList<Contact> getContactsByBirthday(String birthday){
+		db = this.getReadableDatabase();
+		ArrayList<Contact> celebrants = new ArrayList<Contact>();
+		
+		Cursor cursor = db.query(TABLE, new String[] { FIRST_NAME, LAST_NAME, PHONENUMBER, BIRTHDAY }, BIRTHDAY + "=?", new String[] { birthday },
+				null,null,null,null);
+		
+		if(cursor.moveToFirst()){
+			while(cursor.isAfterLast() == false){
+				String firstname = cursor.getString(cursor.getColumnIndex(FIRST_NAME));
+				String lastname = cursor.getString(cursor.getColumnIndex(LAST_NAME));
+				String phoneNumber = cursor.getString(cursor.getColumnIndex(PHONENUMBER));
+				String bday = cursor.getString(cursor.getColumnIndex(BIRTHDAY));
+				
+				Contact c = new Contact(firstname, lastname, phoneNumber, bday);
+				celebrants.add(c);
+				cursor.moveToNext();
+			}
+			
+		}
+		cursor.close();
+		return celebrants;
+	}
+	
 	public void deleteContact(Contact c){
 		db = this.getWritableDatabase();
 		db.delete(TABLE, ID + " =?", new String[] {String.valueOf(c.getId())});

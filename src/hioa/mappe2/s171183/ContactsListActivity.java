@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
@@ -74,10 +75,17 @@ public class ContactsListActivity extends FragmentActivity {
 			LayoutInflater inflater =(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View row = inflater.inflate(R.layout.row_layout, parent, false);
 			TextView contactName = (TextView)row.findViewById(R.id.contactName);
+			Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
+			contactName.setTypeface(tf);
+
+			TextView contactBirthday = (TextView)row.findViewById(R.id.contactBirthday);
+			Typeface tfRegular = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
+			contactBirthday.setTypeface(tfRegular);
 			ImageView deleteButton = (ImageView)row.findViewById(R.id.deleteIcon);
 			ImageView editButton = (ImageView)row.findViewById(R.id.editIcon);
 
 			contactName.setText(contacts.get(position).toString());
+			contactBirthday.setText(contacts.get(position).getBirthday());
 			deleteButton.setTag(contacts.get(position).getId());
 			editButton.setTag(contacts.get(position).getId());
 		

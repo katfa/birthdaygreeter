@@ -1,12 +1,9 @@
 package hioa.mappe2.s171183;
 
-import java.util.Calendar;
-
 import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -38,6 +35,10 @@ public class RegisterActivity extends Activity {
 		
 		bindInputFields();
 		bindButtons();
+		
+		TextView title = (TextView)findViewById(R.id.addContactTitle);
+		Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
+		title.setTypeface(tf);
 		
 		Intent i = getIntent();
 		

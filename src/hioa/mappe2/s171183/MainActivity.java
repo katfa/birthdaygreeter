@@ -1,20 +1,16 @@
 package hioa.mappe2.s171183;
 
-import java.util.Calendar;
-
 import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -73,17 +69,6 @@ public class MainActivity extends Activity {
 			}
 		});
 
-		showNotification = (Button) findViewById(R.id.showNotification);
-		showNotification.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				NotificationCreator nc = new NotificationCreator(
-						MainActivity.this, "Kat", "90134595");
-				nc.createNotification();
-			}
-		});
-
 	}
 
 	@Override
@@ -134,6 +119,16 @@ public class MainActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item){
+		switch (item.getItemId()){
+		case R.id.menu_settings: finish();
+		return true;
+		}
+		return false;
+		
 	}
 
 }

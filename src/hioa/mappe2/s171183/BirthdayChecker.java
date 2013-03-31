@@ -1,5 +1,8 @@
 package hioa.mappe2.s171183;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -7,13 +10,13 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
-import android.widget.Toast;
 
 public class BirthdayChecker extends Service {
 
-	public static final long CHECK_INTERVAL = 10 * 1000; // 10 seconds
+	public static final long CHECK_INTERVAL = 24 * 60 * 60 * 1000; // 24 hours
 	private Handler mHandler = new Handler();
 	private Timer mTimer = null;
+	private DBAdapter dbAdapter = new DBAdapter(this);
 
 	@Override
 	public void onCreate() {
@@ -36,11 +39,19 @@ public class BirthdayChecker extends Service {
 		public void run() {
 			mHandler.post(new Runnable(){
 				public void run(){
-					Toast.makeText(getApplicationContext(), "TOAST!",
-							Toast.LENGTH_SHORT).show();
+					SimpleDateFormat df = new SimpleDateFormat("MMMM dd");
+					String today = df.format(Calendar.getInstance().getTime()).toString();
+					
+					List<Contact> birthdayCelebrants = dbAdapter.getContactsByBirthday(today);
+					
+					if(birthdayCelebrants.size() > 0) {
+						for(Contact c : birthdayCelebrants){
+							NotificationCreator nc = new NotificationCreator(
+									getApplicationContext(), c.getFirstName(), c.getPhoneNumber(), birthdayCelebrants.indexOf(c));
+							nc.createNotification();
+						}
+					}
 				}
-				
-
 			});
 		}
 	}

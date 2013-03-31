@@ -125,14 +125,4 @@
         </LinearLayout>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/showNotification"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/second_row"
-        android:layout_marginBottom="5dp"
-        android:background="@color/white"
-        android:text="@string/show_notification"
-        android:textColor="@color/green" />
-
 </RelativeLayout>

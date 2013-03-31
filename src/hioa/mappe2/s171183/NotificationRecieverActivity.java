@@ -11,8 +11,6 @@ public class NotificationRecieverActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_notification_reciever);
-		
 		Intent intent = getIntent();
 		
 		String message = intent.getStringExtra("sms_body");
