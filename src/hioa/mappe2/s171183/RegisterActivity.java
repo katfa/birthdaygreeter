@@ -24,8 +24,6 @@ public class RegisterActivity extends Activity {
 	
 	private DBAdapter dbAdapter;
 	private int contactId = 0;
-	
-	private static final int CALENDAR_VIEW = 1;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -65,8 +63,8 @@ public class RegisterActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(RegisterActivity.this, CalendarActivity.class);
-				startActivityForResult(intent, CALENDAR_VIEW);
+				Intent intent = new Intent(RegisterActivity.this, DatePickerActivity.class);
+				startActivityForResult(intent, 0);
 			}
 		});
 		
@@ -130,7 +128,7 @@ public class RegisterActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data){
 		
 		switch(requestCode) {
-		case CALENDAR_VIEW:
+		case 0:
 			if(resultCode == RESULT_OK) {
 				Bundle bundle = data.getExtras();
 				birthdayText.setText(bundle.getString("selectedDate"));

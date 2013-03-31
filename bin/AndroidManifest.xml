@@ -31,7 +31,7 @@
             android:label="@string/title_activity_register" >
         </activity>
         <activity
-            android:name="hioa.mappe2.s171183.CalendarActivity"
+            android:name="hioa.mappe2.s171183.DatePickerActivity"
             android:label="@string/title_activity_calendar" >
         </activity>
         <activity
