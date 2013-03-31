@@ -1,6 +1,10 @@
 package hioa.mappe2.s171183;
 
+import java.util.Calendar;
+
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -10,6 +14,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -23,7 +28,13 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		bindButtons();
+		doStartService();
 
+	}
+
+	private void doStartService() {
+		Intent service = new Intent(MainActivity.this, BirthdayChecker.class);
+		startService(service);
 	}
 
 	private void bindButtons() {
@@ -44,9 +55,6 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// Intent intent = new Intent(MainActivity.this,
-				// PhoneBook.class);
-				// startActivity(intent);
 
 				Intent intent = new Intent(Intent.ACTION_PICK,
 						ContactsContract.Contacts.CONTENT_URI);
@@ -86,7 +94,7 @@ public class MainActivity extends Activity {
 		switch (requestCode) {
 		case (PICK_CONTACT):
 			if (resultCode == Activity.RESULT_OK) {
-				
+
 				Uri contactData = data.getData();
 				Cursor cursor = managedQuery(contactData, null, null, null,
 						null);
@@ -117,7 +125,7 @@ public class MainActivity extends Activity {
 			}
 			break;
 		}
-		
+
 		startActivity(intent);
 	}
 

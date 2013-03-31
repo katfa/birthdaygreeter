@@ -1,6 +1,10 @@
 package hioa.mappe2.s171183;
 
+import java.util.Calendar;
+
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -152,5 +156,4 @@ public class RegisterActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_register, menu);
 		return true;
 	}
-
 }
