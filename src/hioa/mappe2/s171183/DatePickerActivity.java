@@ -51,8 +51,16 @@ public class DatePickerActivity extends Activity {
 
 					pickedMonth = month;
 					pickedDay = dayOfMonth;
+					String day = "";
+					String selectedDate = "";
+					if (String.valueOf(pickedDay).length() == 1){
+						day = "0" + pickedDay;
+						selectedDate = months[pickedMonth] + " " + day;
+					} else {
+						selectedDate = months[pickedMonth] + " " + pickedDay;
+					}
 					
-					String selectedDate = months[pickedMonth] + " " + pickedDay;
+					
 					
 					Bundle bundle = new Bundle();
 					bundle.putString("selectedDate", selectedDate);

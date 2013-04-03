@@ -1,5 +1,7 @@
 package hioa.mappe2.s171183;
 
+import java.util.Calendar;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -28,11 +30,6 @@ public class MainActivity extends FragmentActivity {
 		bindButtons();
 		doStartService();
 
-	}
-
-	private void doStartService() {
-		Intent service = new Intent(MainActivity.this, BirthdayChecker.class);
-		startService(service);
 	}
 
 	private void bindButtons() {
@@ -83,6 +80,13 @@ public class MainActivity extends FragmentActivity {
 		});
 
 	}
+	
+	private void doStartService() {
+		Intent service = new Intent();
+		service.setAction("hioa.mappe2.s171183.trigger");
+		sendBroadcast(service);
+	}
+
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -137,7 +141,7 @@ public class MainActivity extends FragmentActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
 		switch (item.getItemId()){
-		case R.id.menu_settings: finish();
+		case R.id.menu_exit: finish();
 		return true;
 		}
 		return false;

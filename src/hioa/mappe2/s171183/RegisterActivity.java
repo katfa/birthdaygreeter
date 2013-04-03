@@ -74,51 +74,10 @@ public class RegisterActivity extends Activity {
 		});
 		
 		saveContact = (Button) findViewById(R.id.saveButton);
-		saveContact.setOnClickListener(new OnClickListener() {
-			Context context = getBaseContext();
-			
+		saveContact.setOnClickListener(new OnClickListener() {			
 			@Override
 			public void onClick(View v) {
-				Contact contact;
-				if(noEmptyFields()){
-					
-					//adds custom string if lastname is left blank
-					String lastNameSubstitute = "";
-					if(lastNameInput.getText().toString().length() == 0){
-						lastNameSubstitute = "---";
-					}
-					
-					if(lastNameSubstitute.equals("")){
-						contact = new Contact(firstNameInput.getText().toString(), lastNameInput.getText().toString(),
-												  phoneNumberInput.getText().toString(), birthdayText.getText().toString()); 
-					} else {
-						contact = new Contact(firstNameInput.getText().toString(), lastNameSubstitute,
-												  phoneNumberInput.getText().toString(), birthdayText.getText().toString()); 
-					}
-				
-					//on update
-					if(contactId != 0){
-						contact = dbAdapter.getContact(contactId);
-						contact.setBirthday(birthdayText.getText().toString());
-						contact.setFirstName(firstNameInput.getText().toString());
-						contact.setPhoneNumber(phoneNumberInput.getText().toString());
-						if(lastNameSubstitute.equals("")){
-							contact.setLastName(lastNameInput.getText().toString());
-						} else {
-							contact.setLastName(lastNameSubstitute);
-						}
-
-						dbAdapter.updateContact(contact);
-						Toast.makeText(context, "Contact updated", Toast.LENGTH_SHORT).show();
-					} else {
-						//on save new contact
-						dbAdapter.insert(contact);
-						Toast.makeText(context, "Total contacts increased to " + dbAdapter.getTotalContacts(), Toast.LENGTH_SHORT).show();
-					}
-				} else {
-					showErrorDialog();
-					Toast.makeText(context, "EMPTY FIELDS!", Toast.LENGTH_SHORT).show();
-				}
+				saveContactInfo();
 			}
 		});
 	}
@@ -128,6 +87,13 @@ public class RegisterActivity extends Activity {
 		lastNameInput = (EditText)findViewById(R.id.lastNameBox);
 		phoneNumberInput = (EditText)findViewById(R.id.phoneNumberBox);
 		birthdayText = (TextView)findViewById(R.id.birthdayText);
+	}
+	
+	private void clearInputFields(){
+		firstNameInput.setText("");
+		lastNameInput.setText("");
+		phoneNumberInput.setText("");
+		birthdayText.setText("");
 	}
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -149,7 +115,52 @@ public class RegisterActivity extends Activity {
 				birthdayText.getText().toString().length() != 0;
 	}
 	
-	private void showErrorDialog(){}
+	private void saveContactInfo(){
+		Contact contact;
+		Context context = getBaseContext();
+		if(noEmptyFields()){
+			
+			//adds custom string if lastname is left blank
+			String lastNameSubstitute = "";
+			if(lastNameInput.getText().toString().length() == 0){
+				lastNameSubstitute = "---";
+			}
+			
+			if(lastNameSubstitute.equals("")){
+				contact = new Contact(firstNameInput.getText().toString(), lastNameInput.getText().toString(),
+										  phoneNumberInput.getText().toString(), birthdayText.getText().toString()); 
+			} else {
+				contact = new Contact(firstNameInput.getText().toString(), lastNameSubstitute,
+										  phoneNumberInput.getText().toString(), birthdayText.getText().toString()); 
+			}
+		
+			//on update
+			if(contactId != 0){
+				contact = dbAdapter.getContact(contactId);
+				contact.setBirthday(birthdayText.getText().toString());
+				contact.setFirstName(firstNameInput.getText().toString());
+				contact.setPhoneNumber(phoneNumberInput.getText().toString());
+				if(lastNameSubstitute.equals("")){
+					contact.setLastName(lastNameInput.getText().toString());
+				} else {
+					contact.setLastName(lastNameSubstitute);
+				}
+
+				dbAdapter.updateContact(contact);
+				Toast.makeText(context, "Contact updated", Toast.LENGTH_SHORT).show();
+				Intent i = new Intent(this, ContactsListActivity.class);
+				startActivity(i);
+			} else {
+				//on save new contact
+				dbAdapter.insert(contact);
+				clearInputFields();
+				Toast.makeText(context, "Total contacts increased to " + dbAdapter.getTotalContacts(), Toast.LENGTH_SHORT).show();
+			}
+		} else {
+
+			Toast.makeText(context, "NO EMPTY FIELDS ALLOWED UNLESS MARKED WITH \'OPTIONAL\'", Toast.LENGTH_SHORT).show();
+		}
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

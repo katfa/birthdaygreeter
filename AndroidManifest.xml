@@ -60,6 +60,7 @@
         <receiver android:name=".StartServiceReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="hioa.mappe2.s171183.trigger" />
             </intent-filter>
         </receiver>
     </application>

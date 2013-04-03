@@ -65,7 +65,6 @@ public class Contact{
 	}
 	
 	public String toString(){
-		System.out.println("Lastname" + lastName+ "'");
 		if(lastName.equals("---"))
 			return firstName;
 		else return lastName + ", " + firstName;

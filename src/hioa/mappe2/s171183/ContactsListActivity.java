@@ -33,15 +33,12 @@ public class ContactsListActivity extends FragmentActivity {
 		dbAdapter.open();
 		
 		ArrayList<Contact> contacts = dbAdapter.selectAll();
-		for(Contact c : contacts){
-			System.out.println(c.toString() + " id > " + c.getId());
-		}
-		
 		ListView listView = (ListView)findViewById(R.id.contactsList);
 		listAdapter = new ContactListAdapter(this.getBaseContext(), this, getSupportFragmentManager(), R.layout.row_layout, R.id.contactName, contacts);
 		listView.setAdapter(listAdapter);
 		
 	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

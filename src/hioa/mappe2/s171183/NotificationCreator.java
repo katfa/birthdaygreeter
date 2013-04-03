@@ -6,6 +6,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 
 public class NotificationCreator extends Activity {
@@ -36,19 +38,19 @@ public class NotificationCreator extends Activity {
 		intent.putExtra("address", phonenumber);
 		
 		PendingIntent pIntent =	PendingIntent.getActivity(context, 0, intent, 0);
-			
+		Uri notificationSound= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 		
 		Notification notification = new Notification.Builder(context)
 										.setContentTitle("It's " + name + "'s birthday!")
 										.setContentText("Click here to send them a message")
 										.setSmallIcon(R.drawable.app_notification)
-										.setContentIntent(pIntent).build();
+										.setContentIntent(pIntent)
+										.setSound(notificationSound).build();
 		
 		NotificationManager notificationManager = (NotificationManager)context.getSystemService(NOTIFICATION_SERVICE);
 		
 	    notification.flags |= Notification.FLAG_AUTO_CANCEL;
-		notificationManager.notify(index, notification);
-		
+		notificationManager.notify(index, notification);		
 		
 	}
 }

@@ -3,11 +3,14 @@ package hioa.mappe2.s171183;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.view.Menu;
 
 public class NotificationReciever extends Activity {
 
-	protected void onCreate() {
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 		Intent intent = getIntent();
 		
 		String message = intent.getStringExtra("sms_body");
@@ -20,12 +23,11 @@ public class NotificationReciever extends Activity {
 		smsIntent.putExtra("sms_body", message);
 		
 		startActivity(smsIntent);
+		finish();
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_notification_reciever, menu);
 		return true;
 	}
 
