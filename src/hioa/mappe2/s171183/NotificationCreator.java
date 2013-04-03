@@ -30,7 +30,7 @@ public class NotificationCreator extends Activity {
 		
 		// Sets up intent triggered by notification click.
 		
-		Intent intent = new Intent(context, NotificationRecieverActivity.class);
+		Intent intent = new Intent(context, NotificationReciever.class);
 		
 		intent.putExtra("sms_body","Happy birthday, " + name + "!");
 		intent.putExtra("address", phonenumber);

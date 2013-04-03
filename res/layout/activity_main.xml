@@ -112,6 +112,7 @@
             android:orientation="vertical" >
 
             <Button
+                android:id="@+id/about"
                 android:layout_width="45dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/about" />

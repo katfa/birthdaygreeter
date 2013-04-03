@@ -1,16 +1,13 @@
 package hioa.mappe2.s171183;
 
-import android.net.Uri;
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.Menu;
 
-public class NotificationRecieverActivity extends Activity {
+public class NotificationReciever extends Activity {
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	protected void onCreate() {
 		Intent intent = getIntent();
 		
 		String message = intent.getStringExtra("sms_body");

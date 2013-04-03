@@ -40,12 +40,10 @@
             android:label="@string/title_activity_contacts_list" >
         </activity>
         <activity
-            android:name="hioa.mappe2.s171183.NotificationRecieverActivity"
-            android:label="@string/title_activity_notification_reciever" >
+            android:name="hioa.mappe2.s171183.NotificationReciever" >
         </activity>
         <activity
-            android:name="hioa.mappe2.s171183.NotificationCreatorActivity"
-            android:label="@string/title_activity_notification_reciever" >
+            android:name="hioa.mappe2.s171183.NotificationCreatorActivity" >
         </activity>
         <activity
             android:name="hioa.mappe2.s171183.PhoneBook"
@@ -59,12 +57,11 @@
 	  		android:label="@string/service_name" >
 		</service> 
 		
-        <receiver android:name=".MyScheduleReceiver">
+        <receiver android:name=".StartServiceReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <reciever android:name="h.StartServiceReceiver"></reciever>
     </application>
 
 </manifest>

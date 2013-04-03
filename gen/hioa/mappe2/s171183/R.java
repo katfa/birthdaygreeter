@@ -39,24 +39,26 @@ public final class R {
         public static final int view_contacts=0x7f020008;
     }
     public static final class id {
-        public static final int action_settings=0x7f090013;
+        public static final int about=0x7f090007;
+        public static final int action_settings=0x7f090015;
         public static final int addContact=0x7f090003;
-        public static final int addContactTitle=0x7f090007;
+        public static final int addContactTitle=0x7f090008;
         public static final int app_icon=0x7f090001;
-        public static final int birthdayText=0x7f09000c;
-        public static final int calendarButton=0x7f09000b;
-        public static final int contactBirthday=0x7f09000f;
-        public static final int contactName=0x7f09000e;
+        public static final int birthdayText=0x7f09000d;
+        public static final int calendarButton=0x7f09000c;
+        public static final int contactBirthday=0x7f090010;
+        public static final int contactName=0x7f09000f;
         public static final int contactsList=0x7f090000;
-        public static final int deleteIcon=0x7f090011;
-        public static final int editIcon=0x7f090010;
-        public static final int firstNameBox=0x7f090008;
+        public static final int deleteIcon=0x7f090012;
+        public static final int editIcon=0x7f090011;
+        public static final int firstNameBox=0x7f090009;
         public static final int first_row=0x7f090002;
-        public static final int lastNameBox=0x7f090009;
-        public static final int menu_settings=0x7f090012;
-        public static final int phoneNumberBox=0x7f09000a;
+        public static final int lastNameBox=0x7f09000a;
+        public static final int menu_exit=0x7f090014;
+        public static final int menu_settings=0x7f090013;
+        public static final int phoneNumberBox=0x7f09000b;
         public static final int phonebook=0x7f090006;
-        public static final int saveButton=0x7f09000d;
+        public static final int saveButton=0x7f09000e;
         public static final int second_row=0x7f090005;
         public static final int viewContacts=0x7f090004;
     }
@@ -76,7 +78,9 @@ public final class R {
     }
     public static final class string {
         public static final int about_app=0x7f060006;
-        public static final int action_settings=0x7f060019;
+        public static final int about_body=0x7f06001a;
+        public static final int about_title=0x7f060019;
+        public static final int action_settings=0x7f060018;
         public static final int add_contact=0x7f060004;
         public static final int add_contact_phonebook=0x7f060007;
         public static final int app_name=0x7f060000;
@@ -87,18 +91,18 @@ public final class R {
         public static final int delete_yes=0x7f060013;
         public static final int editIcon_description=0x7f060010;
         public static final int first_name=0x7f060008;
-        public static final int hello_world=0x7f060016;
         public static final int image_description=0x7f060002;
         public static final int last_name=0x7f060009;
+        public static final int menu_exit=0x7f060017;
         public static final int menu_settings=0x7f060003;
+        public static final int ok=0x7f06001b;
         public static final int phone_number=0x7f06000a;
         public static final int save=0x7f06000c;
         public static final int service_name=0x7f060001;
         public static final int show_notification=0x7f060015;
         public static final int title_activity_calendar=0x7f06000e;
         public static final int title_activity_contacts_list=0x7f06000f;
-        public static final int title_activity_notification_reciever=0x7f060017;
-        public static final int title_activity_phone_book=0x7f060018;
+        public static final int title_activity_phone_book=0x7f060016;
         public static final int title_activity_register=0x7f06000d;
         public static final int view_contacts=0x7f060005;
     }

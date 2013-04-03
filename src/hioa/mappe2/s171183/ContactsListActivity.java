@@ -121,7 +121,7 @@ public class ContactsListActivity extends FragmentActivity {
 		
 		private void showDeleteConfirmation(int contactId){
 			Contact c = dbAdapter.getContact(contactId);
-			DialogFragment deleteDialog = new DeleteDialog(c, cLActivity);
+			DialogFragment deleteDialog = new DialogCreator(c, cLActivity);
 			deleteDialog.show(fManager, "Delete");
 		}
 	}

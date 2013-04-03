@@ -23,9 +23,13 @@
     <string name="delete_yes">Yes</string>
     <string name="delete_no">Nope</string>
     <string name="show_notification">Show notification</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="title_activity_notification_reciever">NotificationRecieverActivity</string>
     <string name="title_activity_phone_book">Phone Book</string>
+    <string name="menu_exit">Exit</string>
     <string name="action_settings">Settings</string>
+    <string name="about_title">About this app</string>
+    <string name="about_body">This app will help you remember your friends\' birthdays. 
+        You can either add them to the database manually, or get them from your contacts list. 
+        \n\nOnce a day it will check the database and if someone\'s birthday falls on that day, you\'ll get a notification!</string>
+    <string name="ok">OK</string>
 
 </resources>

@@ -6,16 +6,18 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
 
 	private Button addContact, viewContacts, addContactByPhonebook,
-			showNotification;
+			aboutButton;
 	static final int PICK_CONTACT = 1;
 
 	@Override
@@ -67,6 +69,17 @@ public class MainActivity extends Activity {
 						ContactsListActivity.class);
 				startActivity(intent);
 			}
+		});
+		
+		aboutButton = (Button) findViewById(R.id.about);
+		aboutButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				DialogFragment aboutDialog = new DialogCreator(MainActivity.this);
+				aboutDialog.show(getSupportFragmentManager(), "about");
+			}
+			
 		});
 
 	}
