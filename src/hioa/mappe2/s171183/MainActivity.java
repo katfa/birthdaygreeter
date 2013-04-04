@@ -141,11 +141,20 @@ public class MainActivity extends FragmentActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
 		switch (item.getItemId()){
-		case R.id.menu_exit: finish();
-		return true;
+		case R.id.menu_exit: 
+			finish();
+			return true;
+		case R.id.menu_change_time:
+			getNewCheckTime();
+			return true;
 		}
 		return false;
 		
+	}
+	
+	public void getNewCheckTime(){
+		MyTimePicker timePicker = new MyTimePicker();
+		timePicker.show(getSupportFragmentManager(), "show picker");
 	}
 
 }
