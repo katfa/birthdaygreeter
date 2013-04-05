@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -42,7 +43,7 @@ public class RegisterActivity extends Activity {
 		
 		Intent i = getIntent();
 		
-		// If intent comes from phonebook
+		// If intent comes from phone book
 		if (i.hasExtra("name") && i.hasExtra("number")) {
 			firstNameInput.setText(i.getStringExtra("name"));
 			phoneNumberInput.setText(i.getStringExtra("number"));
@@ -120,7 +121,7 @@ public class RegisterActivity extends Activity {
 		Context context = getBaseContext();
 		if(noEmptyFields()){
 			
-			//adds custom string if lastname is left blank
+			//adds custom string if last name is left blank
 			String lastNameSubstitute = "";
 			if(lastNameInput.getText().toString().length() == 0){
 				lastNameSubstitute = "---";
@@ -166,6 +167,20 @@ public class RegisterActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_main, menu);
+		menu.removeItem(R.id.menu_change_time);
+		menu.removeItem(R.id.menu_exit);
 		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item){
+		switch (item.getItemId()){
+		case R.id.menu_back:
+			Intent i = new Intent(this,MainActivity.class);
+			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(i);
+			return true;
+		}
+		return false;
 	}
 }

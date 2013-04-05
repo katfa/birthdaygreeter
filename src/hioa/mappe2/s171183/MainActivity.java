@@ -1,7 +1,5 @@
 package hioa.mappe2.s171183;
 
-import java.util.Calendar;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -21,6 +19,7 @@ public class MainActivity extends FragmentActivity {
 	private Button addContact, viewContacts, addContactByPhonebook,
 			aboutButton;
 	static final int PICK_CONTACT = 1;
+	private static boolean serviceIsRunning = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +27,12 @@ public class MainActivity extends FragmentActivity {
 		setContentView(R.layout.activity_main);
 
 		bindButtons();
-		doStartService();
+		
+		// run only once to set alarm
+		if(!serviceIsRunning){
+			doStartService();
+			serviceIsRunning=true;
+		}
 
 	}
 
@@ -41,6 +45,7 @@ public class MainActivity extends FragmentActivity {
 			public void onClick(View v) {
 				Intent intent = new Intent(MainActivity.this,
 						RegisterActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
 			}
 		});
@@ -53,6 +58,7 @@ public class MainActivity extends FragmentActivity {
 
 				Intent intent = new Intent(Intent.ACTION_PICK,
 						ContactsContract.Contacts.CONTENT_URI);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivityForResult(intent, PICK_CONTACT);
 			}
 		});
@@ -64,6 +70,7 @@ public class MainActivity extends FragmentActivity {
 			public void onClick(View v) {
 				Intent intent = new Intent(MainActivity.this,
 						ContactsListActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
 			}
 		});
@@ -98,6 +105,8 @@ public class MainActivity extends FragmentActivity {
 			if (resultCode == Activity.RESULT_OK) {
 
 				Uri contactData = data.getData();
+				
+				@SuppressWarnings("deprecation")
 				Cursor cursor = managedQuery(contactData, null, null, null,
 						null);
 
@@ -133,8 +142,8 @@ public class MainActivity extends FragmentActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_main, menu);
+		menu.removeItem(R.id.menu_back);
 		return true;
 	}
 	

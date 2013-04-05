@@ -81,6 +81,7 @@
         android:layout_marginLeft="60dp"
         android:layout_marginRight="30dp"
         android:orientation="horizontal"
+        android:baselineAligned="false"
         android:weightSum="2" >
 
         <LinearLayout

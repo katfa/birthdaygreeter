@@ -29,6 +29,8 @@ public class NotificationCreator extends Activity {
 	}
 
 	public void createNotification(){
+		// sending different requestIDs to get different extras in the notification receiver
+		int requestID = (int) System.currentTimeMillis();
 		
 		// Sets up intent triggered by notification click.
 		
@@ -37,7 +39,7 @@ public class NotificationCreator extends Activity {
 		intent.putExtra("sms_body","Happy birthday, " + name + "!");
 		intent.putExtra("address", phonenumber);
 		
-		PendingIntent pIntent =	PendingIntent.getActivity(context, 0, intent, 0);
+		PendingIntent pIntent =	PendingIntent.getActivity(context, requestID, intent, PendingIntent.FLAG_ONE_SHOT);
 		Uri notificationSound= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 		
 		Notification notification = new Notification.Builder(context)

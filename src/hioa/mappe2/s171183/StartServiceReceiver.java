@@ -25,9 +25,9 @@ public class StartServiceReceiver extends BroadcastReceiver {
         
   
         Intent service = new Intent(context, BirthdayChecker.class);
-		PendingIntent reminder = PendingIntent.getService(context, 0, service, PendingIntent.FLAG_UPDATE_CURRENT);
+		PendingIntent reminder = PendingIntent.getService(context, 0, service, PendingIntent.FLAG_ONE_SHOT);
 		AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-		am.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_HOUR, reminder);
+		am.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, reminder);
 
 	}
 

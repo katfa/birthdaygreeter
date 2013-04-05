@@ -51,11 +51,23 @@
         android:hint="@string/phone_number"
         android:inputType="phone" />
     
+    <TextView 
+        android:id="@+id/ignoreYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phoneNumberBox"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+		android:text="@string/ignore_year"
+		android:textSize="12sp"
+		android:textColor="@color/dark_grey" />
+    
     <Button
         android:id="@+id/calendarButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/phoneNumberBox"
+        android:layout_below="@+id/ignoreYear"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
@@ -67,11 +79,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/calendarButton"
-        android:layout_below="@+id/phoneNumberBox"
+        android:layout_below="@+id/ignoreYear"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="5dp"
 		android:textSize="22sp"
 		android:textColor="@color/dark_grey"
+		android:textIsSelectable="false"
 		android:textStyle="italic" />      
 		
     <Button
